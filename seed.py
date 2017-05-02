@@ -59,11 +59,14 @@ def load_movies():
         else:
             video_release_date = None
 
+        title = title[:-7]
+
         movie = Movie(movie_id=movie_id,
                       title=title,
                       released_at=released_at,
                       video_release_date=video_release_date,
                       imdb_url=imdb_url)
+
 
         db.session.add(movie)
 
@@ -79,14 +82,13 @@ def load_ratings():
 
     for row in open("seed_data/u.data"):
         row = row.rstrip()
-        rating_id, user_id, movie_id, score, timestamp = row.split(" ")
+        row = row.split("\t")
+        user_id, movie_id, score = row[0:3]
 
 
-        rating = Rating(rating_id=rating_id,
-                    user_id=user_id,
+        rating = Rating(user_id=user_id,
                     movie_id=movie_id,
-                    score=score,
-                    timestamp=timestamp
+                    score=score)
 
         db.session.add(rating)
 
