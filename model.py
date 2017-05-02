@@ -36,18 +36,20 @@ class Movie(db.Model):
     __tablename__ = "movies"
 
     movie_id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(50), nullable=False, unique=True)
-    released_at = db.Column(db.DateTime, nullable=False)
-    imdb_url = db.Column(db.String(100), nullable=False)
+    title = db.Column(db.String(200), nullable=False)
+    released_at = db.Column(db.DateTime)
+    video_release_date = db.Column(db.DateTime)
+    imdb_url = db.Column(db.String(200))
 
 class Rating(db.Model):
 
     __tablename__ = "rating"
 
     rating_id = db.Column(db.Integer, primary_key=True)
-    movie_id = db.Column(db.Integer, nullable=False)
-    user_id = db.Column(db.Integer, nullable=False)
-    score = db.Column(db.Integer, nullable=False)
+    movie_id = db.Column(db.Integer)
+    user_id = db.Column(db.Integer)
+    score = db.Column(db.Integer)
+    timestamp = db.Column(db.Integer)
 
 ##############################################################################
 # Helper functions
