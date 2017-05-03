@@ -2,11 +2,38 @@
 {% block content %}
 
 <form action="/register", method="POST">
-    Email<input type="text" name="email"><br>
-    Password<input type="text" name="password"><br>
-    Age<input type="text" name="age"><br>
-    Zipcode<input type="text" name="zipcode"><br>
-    <input type="submit" value="Submit">
+    <div>
+        <label>
+            Email
+            <input type="email" name="email">
+        </label>
+    </div>
+
+    <div>
+        <label>
+            Password
+            <input type="password" name="password">
+        </label>
+    </div>
+
+    <div>
+        <label>
+            Age
+            <input type="number" name="age">
+        </label>
+    </div>
+
+    <div>
+        <label>
+            Zipcode
+            <input type="text" name="zipcode">
+        </label>
+    </div>
+
+    <div>
+        <input type="submit" value="Register">
+    </div>
+
 </form>
 
 {% endblock %}
