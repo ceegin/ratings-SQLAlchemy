@@ -129,13 +129,60 @@ def movie_detail(movie_id):
     if user_id:
         user_rating = Rating.query.filter_by(
             movie_id=movie_id, user_id=user_id).first()
-
     else:
         user_rating = None
 
+    # Get average rating of movie
+
+    rating_scores = [r.score for r in movie.ratings]
+    avg_rating = float(sum(rating_scores)) / len(rating_scores)
+
+    prediction = None
+
+    # Prediction code: only predict if the user hasn't rated it.
+
+    if (not user_rating) and user_id:
+        user = User.query.get(user_id)
+        if user:
+            prediction = user.predict_rating(movie)
+
+    if prediction:
+        effective_rating = prediction 
+    elif user_rating:
+        effective_rating = user_rating.score 
+    else:
+        effective_rating = None
+
+    the_eye = (User.query.filter_by(email="the-eye@of-judgment.com").one())
+
+    eye_rating = Rating.query.filter_by(
+        user_id=the_eye.user_id, movie_id=movie.movie_id).first()
+
+    if eye_rating is None:
+        eye_rating = the_eye.predict_rating(movie)
+    else:
+        eye_rating = eye_rating.score 
+
+    if eye_rating and effective_rating:
+        difference = abs(eye_rating - effective_rating)
+    else:
+        difference = None
+
+    BERATEMENT_MESSAGES = "I suppose you don't have such bad taste after all. I regret every decision that I've ever made that has brought me to listen to your opinion. Words fail me, as your taste in movies has clearly failed you. That movie is great. For a clown to watch. Idiot. Words cannot express the awfulness of your taste."
+    COMPLIMENT_MESSAGES = "What wonderful taste you have! :D You are just as evil as me."
+
+    if difference is not None:
+        eye_message = BERATEMENT_MESSAGES
+    else:
+        eye_message = COMPLIMENT_MESSAGES
+
+
     return render_template("movie.html",
                            movie=movie,
-                           user_rating=user_rating)
+                           user_rating=user_rating,
+                           average=avg_rating,
+                           prediction=prediction,
+                           eye_message=eye_message)
 
 
 @app.route("/movies/<int:movie_id>", methods=['POST'])

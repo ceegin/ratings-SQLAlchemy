@@ -27,6 +27,13 @@
           </label>
           <input type="submit" value="Rate">
       </form>
+      <p>Average rating: {{ average }}</p>
+      {% if prediction %}
+        <p>We predict you will rate this movie {{ prediction }}.</p>
+      {% endif %}
+
+    <p>{{ eye_message }}</p>
+ 
   {% endif %}
 
 {% endblock %}
