@@ -1,0 +1,23 @@
+body {
+    /*font-family: 'times', sans-serif;*/
+    color: crimson;
+    font-family: 'Dosis', sans-serif;
+}
+
+a {
+    color: grey;
+    font-size: 24px;
+}
+
+#popcorn {
+    height: 200px;
+    width: 200px;
+}
+/*
+.movie-listing {
+    text-align: center;
+}*/
+
+h1 {
+    font-size: 50px;
+}

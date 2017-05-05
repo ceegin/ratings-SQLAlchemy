@@ -2,10 +2,14 @@
 <html>
 <head>
   <title>Ratings</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/
+      3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="static/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+  
 </head>
 
 <body>
-Ratings
 
 {% if "user_id" in session %}
     <a href="/logout">Logout</a>
@@ -26,5 +30,8 @@ Ratings
   
   {% block content %} put your content here {% endblock %}
 
+  <script src="http://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/
+      3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
+{% block title %} Rate Movie {% endblock %}
 {% block content %}
 
     <h1>{{ movie.title }}</h1>
     <p>Released: {{ movie.released_at }}</p>
     <p>IMDB: <a href="{{ movie.imdb_url }}">{{ movie.imdb_url }}</a></p>
+
 
   {% if movie.ratings %}
       <h2>Ratings</h2>
